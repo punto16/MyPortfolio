@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>ManLite - Arquitecture</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<link rel="shortcut icon" type="image/png" href="images/ManLite/ManLite_Icon.png">
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt style">
+			<a href="manlite.html" class="logo"><strong>Man</strong> <span>Lite</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="manlite.html">ManLite Home</a></li>
+				<li><a href="manlite_documentation.html">Documentation</a></li>
+				<li><a href="manlite_scripts.html">Usable Scripts</a></li>
+				<li><a href="index.html">Portfolio</a></li>
+			</ul>
+		</nav>
+
+		<section id="banner" class="style0">
+			<video autoplay muted loop id="video-background"
+				style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+				<source src="images/ManLite/DarkForest_ManLite.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<div class="inner">
+				<span class="image">
+					<img src="images/pic07.jpg" alt="" />
+				</span>
+				<header class="major">
+					<h1>ManLite - Architecture</h1>
+				</header>
+			</div>
+		</section>
+
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<p>
+						The program works with 4 different projects within the same solution:
+					</p>
+					<header class="major">
+						<h3>Editor</h3>
+					</header>
+					<p>
+						The Editor is the main entrance of the program and works as an intermediary between the User and
+						the Engine.
+						<br>
+						This project is modular and manages the ImGui and the loop of the Engine.
+						<br>
+						Since it's an intermediary it's here where almost all the User Experience techniques has been
+						applied.
+					</p>
+					<img src="images/ManLite/editor.png" width="50%" />
+					<br>
+					<br>
+					<header class="major">
+						<h3>Engine</h3>
+					</header>
+					<p>
+						The engine operates as a static library (.lib), decoupling core systems from editor-specific
+						implementations while enabling seamless integration with the Editor executable. This modular
+						architecture ensures a clean separation between runtime logic and development tools.
+					</p>
+					<img src="images/ManLite/engine.png" width="50%" />
+					<p>
+						<br>
+						As it's modular, it has a lot of modules to manage such as:
+						<br>
+						- Audio Engine Module (inits SDL_Mixer so the rest of the engine can use its features)
+						<br>
+						- Font Engine Module (inits FreeType so the rest of the engine can use its features)
+						<br>
+						- Input Engine Module (manages all the inputs and events of the program)
+						<br>
+						- Physics Engine Module (manages the physical step and contacts between objects)
+						<br>
+						- Renderer Engine Module (allows to show in screen images, lights, basic shapes, etc)
+						<br>
+						- Scripting Engine Module (manages the Scripting Project and the cpp-csharp communication)
+						<br>
+						- Window Engine Module (manages the application window and display system)
+						<br>
+						- Scene Engine Module (manages the Scenes, loading them, unlaoding them, etc)
+						<br>
+						<br>
+						<img src="images/ManLite/scenemanager.png" width="50%" />
+						<img src="images/ManLite/scene.png" width="50%" />
+						<img src="images/ManLite/gameobject.png" width="50%" />
+						<img src="images/ManLite/layer.png" width="50%" />
+					</p>
+					<header class="major">
+						<h3>Scripting</h3>
+					</header>
+					<p>
+						This subsystem bridges C# gameplay logic with the engine's C++ core via Mono integration,
+						enabling cross-language interoperability and runtime scripting.
+						<br>
+						This is not a very big project inside the Visual Studio solution, but it is necessary in order
+						to put them in the most basic functions so the user can use them. Those would be the
+						InternalCalls, the MonoBehaviour base class and the IGameObject internal class.
+						<br>
+						With only this 3 files, the project will compile into a ManLiteScripting.dll, that the Scripting
+						Engine Module in the Engine project will use, not only to compile its scripts, but also to use
+						it as a reference .dll file to create the new ManLiteUserScripts.dll that contains the user
+						scripts.
+					</p>
+					<img src="images/ManLite/scripting.png" width="50%" />
+					<br>
+					<br>
+					<header class="major">
+						<h3>Builder</h3>
+					</header>
+					<p>
+						This would be the last project that this Solution needs, the builder. It is a very simple .exe
+						program that works similar to the Editor, the only 2 differences are:
+						<br>
+						1. The builder does not contain modules, it only iterates the engine (also it tells to the
+						engine to be runtime all the time and it is in Build mode)
+						<br>
+						2. In order for the program to know what to do, on initing it, it will open a ManLite.init file
+						that contains information about the final build such as the information that the user chooses in
+						the Build Panel, that is the game name, its icon, the main scene, which scenes will it contain,
+						etc.
+					</p>
+				</div>
+			</section>
+
+		</div>
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://x.com/r4_hater" class="icon brands alt fa-twitter"><span
+								class="label">Twitter</span></a></li>
+					<li><a href="https://instagram.com/lluifapis" class="icon brands alt fa-instagram"><span
+								class="label">Instagram</span></a></li>
+					<li><a href="https://github.com/punto16" class="icon brands alt fa-github"><span
+								class="label">GitHub</span></a></li>
+					<li><a href="https://linkedin.com/in/lluis-gonzalez-ramirez"
+							class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Luis Gonzalez Ramirez - All rights reserved</li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>

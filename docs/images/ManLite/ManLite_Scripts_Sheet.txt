@@ -1,0 +1,683 @@
+How to access a script variables from other script even in different game objects example:
+
+public class Test_Communicative_Script : MonoBehaviour
+{
+    public string external_string = "EXTERNAL STRING";
+}
+
+public class Test_Communicative_Script2 : MonoBehaviour
+{
+    public IGameObject other_script_container_go;
+    private Test_Communicative_Script test_Communicative_Script;
+
+    public override void Update()
+    {
+        test_Communicative_Script = MonoBehaviour.GetComponent<Test_Communicative_Script>(other_script_container_go);
+        ML_System.Log("Log Test | String: {0}", test_Communicative_Script.external_string);
+    }
+}
+
+this will print "Log Test | String: EXTERNAL STRING"
+
+Now the List of Scripts Functions and Classes:
+
+class IGameObject
+{
+IGameObject()
+IGameObject(IntPtr go_ptr)
+IntPtr 		game_object_ptr
+bool		IsValid
+string		name
+bool		enabled
+bool		visible
+string		tag
+uint		id
+IGameObject	GetParentGO()
+IGameObject	GetChildGO(string name)
+void		ReparentGO(IGameObject new_parent)
+bool		IsComponntEnabled(ComponentType type)
+void		EnableComponent(ComponentType type)
+void		DisableComponent(ComponentType type)
+operator 	==
+operator 	!=
+}
+
+
+class Input
+{
+Input()
+KeyState 	GetKeyboardKey(KeyboardKey key)
+KeyState	GetMouseButton(MouseButton button)
+Vec2f 		GetMousePosition()
+Vec2f		GetMouseMotion()
+int 		GetMouseWheelMotion() //-1 scroll down | 0 nothing | 1 scroll up
+void		CloseApp()
+}
+
+
+class Scene
+{
+Scene()
+void		LoadScene(string path)
+void		LoadSceneAsync(string path, bool set_scene_on_finish_load)
+void		SetBackGroundLoadedScene()
+IGameObject	CreateEmptyGO(IGameObject parent, bool root_is_parent = false)
+IGameObject	DuplicateGO(IGameObject go)
+void		DeleteGO(IGameObject go)
+IGameObject 	FindGameObjectByID(uint id)
+IGameObject	FindGameObjectByName(string name)
+IGameObject	GetSceneRoot()
+IGameObject	GetCurrentCameraGO()
+void		SetCurrentCameraGO()
+IGameObject	InstantiatePrefab(string path)
+}
+
+
+class ML_System
+{
+ML_System()
+float		GetDT()
+void 		Log(string format, params object[] args)
+}
+
+
+class Transform
+{
+Transform(IGameObject go)
+IGameObject	container_go
+Vec2f		GetLocalPosition()
+void		SetLocalPosition(Vec2f pos)
+float		GetLocalAngle()
+void		SetLocalAngle(float angle)
+Vec2f		GetLocalScale()
+void		SetLocalScale(Vec2f scale)
+Vec2f		GetWorldPosition()
+void		SetWorldPosition(Vec2f pos)
+float		GetWorldAngle()
+void		SetWorldAngle(float angle)
+Vec2f		GetWorldScale()
+void		SetWorldScale(Vec2f scale)
+bool		IsAspectRatioLocked()
+void		SetAspectRatioLock(bool b)
+}
+
+
+class Camera
+{
+Camera(IGameObject go)
+IGameObject	container_go
+Vec2f		GetViewportSize()
+void		SetViewportSize(Vec2f size)
+float		GetZoom()
+void		SetZoom()
+}
+
+
+class Sprite
+{
+Sprite(IGameObject go)
+IGameObject	container_go
+Vec2f		GetTextureSize()
+Vec4f		GetTextureSection()
+void		SetTextureSection(Vec4f section)
+Vec2f		GetTextureOffset()
+void		SetTextureOffset(Vec2f offset)
+bool		IsPixelArt()
+void		SetPixelArt(bool b)
+void		SwapTexture(string path)
+void		FlipVertical(bool v)
+bool		IsFlipVertical()
+void		FlipHorizontal(bool v)
+bool		IsFlipHorizontal()
+bool		IsDefaultFlipVertical()
+bool		IsDefaultFlipHorizontal()
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+class Animator
+{
+Animator(IGameObject go)
+IGameObject	container_go
+void		PlayAnimation(string name)
+void		RePlayAnimation(string name)
+void		StopAnimation()
+bool		IsAnimationPlaying(string name)
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+class Collider2D
+{
+Collider2D(IGameObject go)
+IGameObject	container_go
+void		Pause()
+void		Unpause()
+ShapeType	GetShapeType()
+void		SetShapeType(ShapeType type)
+Vec2f		GetSize()
+void		SetSize(Vec2f size)
+float		GetRadius()
+void		SetRadius(float radius)
+bool		IsDynamic()
+void		SetDynamic(bool dynamic)
+bool		IsSensor()
+void		SetSensor(bool sensor)
+bool		IsRotationLocked()
+void		SetRotationLock(bool r)
+bool		IsUsingGravity()
+void		SetGravityUse(bool g)
+void		ApplyForce(Vec2f force)
+Vec2f		GetSpeed()
+void		SetPosition(Vec2f pos)
+void		SetSpeed(Vec2f speed)
+void		AddSpeed(Vec2f speed)
+float		GetFriction()
+void		SetFriction()
+float		GetLinearDamping()
+void		SetLinearDamping(float l)
+float		GetMass()
+void		SetMass(float m)
+float		GetRestitution()
+void		SetRestitution(float r)
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+class Canvas
+{
+Canvas(IGameObject go)
+IGameObject	container_go
+ButtonState 	GetButtonState(string name)
+void		SetButtonState(string name, ButtonState state)
+CheckboxState	GetCheckboxState(string name)
+void		SetCheckboxState(string name, CheckboxState state)
+bool		GetCheckboxValue(string name)
+void		SetCheckboxValue(string name, bool v)
+SliderState	GetSliderState(string name)
+void		SetSliderState(string name, SliderState state)
+int		GetSliderValue(string name)
+void		SetSliderValue(string name, int v)
+string		GetText(string name)
+void		SetText(string name, string text)
+Vec2f		GetPosition(string name)
+void		SetPosition(string name, Vec2f)
+float		GetAngle(string name)
+void		SetAngle(string name, float angle)
+Vec2f		GetScale(string name)
+void		SetScale(string name, Vec2f scale)
+bool		IsAspectRatioLocked(string name)
+void		SetAspectRatioLock(string name, bool b)
+bool		IsItemUIEnabled(string name)
+void		SetItemUIEnabled(string name, bool b)
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+class Audio
+{
+Audio(IGameObject go)
+IGameObject	container_go
+void		PauseAll()
+void		UnpauseAll()
+void		StopAll()
+void		PlayMusic(string audio)
+void		PlaySound(string audio)
+void		PauseMusic(string audio)
+void		PauseSound(string audio)
+void		UnpauseMusic(string audio)
+void		UnpauseSound(string audio)
+void		StopMusic(string audio)
+void		StopSound(string audio)
+int		GetMusicVolume(string audio)
+int		GetSoundVolume(string audio)
+void		SetMusicVolume(string audio, int volume)
+void		SetSoundVolume(string audio, int volume)
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+class Particles
+{
+Particles(IGameObject go)
+IGameObject	container_go
+void		Play()
+void		Pause()
+void		Unpause()
+void		Stop()
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+class Light
+{
+Light(IGameObject go)
+IGameObject	container_go
+void		SetColor(Vec4f color)
+Vec4f		GetColor()
+void		SetIntensity(float intensity)
+float		GetIntensity()
+void		SetRadius(float r)
+float		GetRadius()
+void		SetEndRadius(float r)
+float		GetEndRadius()
+void		SetEndPosition(Vec2f pos)
+Vec2f		GetEndPosition()
+void		SetFinalPositionStatic(bool b)
+bool		GetFinalPositionStatic()
+bool		IsComponentEnabled()
+void		EnableComponent()
+void		DisableComponent()
+}
+
+
+
+//////////////  Usable Structs and Enums  //////////////
+
+
+
+    public struct Vec2f
+    {
+	Vec2f(float x, float y)
+
+        public float X;
+        public float Y;
+	
+	Normalize()
+	operator ==
+	operator !=
+	operator +
+	operator -
+	operator *
+	operator /
+    }
+
+
+    public struct Vec4f
+    {
+	Vec2f(float x, float y, float z, float w)
+        public float X;
+        public float Y;
+        public float Z;
+        public float W;
+
+	Normalize()
+	operator ==
+	operator !=
+	operator +
+	operator -
+	operator *
+	operator /
+    }
+
+
+    public enum ComponentType
+    {
+        Transform = 0,
+        Camera = 1,
+        Sprite = 2,
+        Animator = 3,
+        Script = 4,
+        Collider2D = 5,
+        Canvas = 6,
+        AudioSource = 7,
+        ParticleSystem = 8,
+        TileMap = 9,
+	Light = 10,
+
+
+        Unkown
+    };
+
+
+    public enum ShapeType
+    {   
+        RECTANGLE = 0,
+        CIRCLE = 1
+    };
+
+
+    public enum ButtonState
+    {
+        IDLE = 0,
+        HOVERED = 1,
+        SELECTED = 2,
+        HOVEREDSELECTED = 3,
+        DISABLED = 4,
+
+        //
+        UNKNOWN
+    };
+
+
+    public enum CheckboxState
+    {
+        IDLE = 0,
+        HOVERED = 1,
+        SELECTED = 2,
+        HOVEREDSELECTED = 3,
+        DISABLED = 4,
+
+        //
+        UNKNOWN
+    };
+
+
+    public enum SliderState
+    {
+        IDLE = 0,
+        HOVERED = 1,
+        DISABLED = 4,
+
+        //
+        UNKNOWN
+    };
+
+
+    public enum KeyState
+    {
+        KEY_IDLE = 0,
+        KEY_DOWN = 1,
+        KEY_REPEAT = 2,
+        KEY_UP = 3,
+    };
+
+
+    public enum MouseButton
+    {
+        MOUSE_BUTTON_UNKNOWN = 0,
+        MOUSE_BUTTON_LEFT = 1,
+        MOUSE_BUTTON_MIDDLE = 2,
+        MOUSE_BUTTON_RIGHT = 3,
+        MOUSE_BUTTON_X1 = 4,
+        MOUSE_BUTTON_X2 = 5
+    };
+
+
+    public enum KeyboardKey
+    {
+        KEY_UNKNOWN = 0,
+        KEY_A = 4,
+        KEY_B = 5,
+        KEY_C = 6,
+        KEY_D = 7,
+        KEY_E = 8,
+        KEY_F = 9,
+        KEY_G = 10,
+        KEY_H = 11,
+        KEY_I = 12,
+        KEY_J = 13,
+        KEY_K = 14,
+        KEY_L = 15,
+        KEY_M = 16,
+        KEY_N = 17,
+        KEY_O = 18,
+        KEY_P = 19,
+        KEY_Q = 20,
+        KEY_R = 21,
+        KEY_S = 22,
+        KEY_T = 23,
+        KEY_U = 24,
+        KEY_V = 25,
+        KEY_W = 26,
+        KEY_X = 27,
+        KEY_Y = 28,
+        KEY_Z = 29,
+
+        KEY_1 = 30,
+        KEY_2 = 31,
+        KEY_3 = 32,
+        KEY_4 = 33,
+        KEY_5 = 34,
+        KEY_6 = 35,
+        KEY_7 = 36,
+        KEY_8 = 37,
+        KEY_9 = 38,
+        KEY_0 = 39,
+
+        KEY_RETURN = 40,
+        KEY_ESCAPE = 41,
+        KEY_BACKSPACE = 42,
+        KEY_TAB = 43,
+        KEY_SPACE = 44,
+
+        KEY_MINUS = 45,
+        KEY_EQUALS = 46,
+        KEY_LEFTBRACKET = 47,
+        KEY_RIGHTBRACKET = 48,
+        KEY_BACKSLASH = 49,
+        KEY_NONUSHASH = 50,
+        KEY_SEMICOLON = 51,
+        KEY_APOSTROPHE = 52,
+        KEY_GRAVE = 53,
+        KEY_COMMA = 54,
+        KEY_PERIOD = 55,
+        KEY_SLASH = 56,
+
+        KEY_CAPSLOCK = 57,
+
+        KEY_F1 = 58,
+        KEY_F2 = 59,
+        KEY_F3 = 60,
+        KEY_F4 = 61,
+        KEY_F5 = 62,
+        KEY_F6 = 63,
+        KEY_F7 = 64,
+        KEY_F8 = 65,
+        KEY_F9 = 66,
+        KEY_F10 = 67,
+        KEY_F11 = 68,
+        KEY_F12 = 69,
+
+        KEY_PRINTSCREEN = 70,
+        KEY_SCROLLLOCK = 71,
+        KEY_PAUSE = 72,
+        KEY_INSERT = 73,
+        KEY_HOME = 74,
+        KEY_PAGEUP = 75,
+        KEY_DELETE = 76,
+        KEY_END = 77,
+        KEY_PAGEDOWN = 78,
+        KEY_RIGHT = 79,
+        KEY_LEFT = 80,
+        KEY_DOWN = 81,
+        KEY_UP = 82,
+
+        KEY_NUMLOCKCLEAR = 83,
+        KEY_KP_DIVIDE = 84,
+        KEY_KP_MULTIPLY = 85,
+        KEY_KP_MINUS = 86,
+        KEY_KP_PLUS = 87,
+        KEY_KP_ENTER = 88,
+        KEY_KP_1 = 89,
+        KEY_KP_2 = 90,
+        KEY_KP_3 = 91,
+        KEY_KP_4 = 92,
+        KEY_KP_5 = 93,
+        KEY_KP_6 = 94,
+        KEY_KP_7 = 95,
+        KEY_KP_8 = 96,
+        KEY_KP_9 = 97,
+        KEY_KP_0 = 98,
+        KEY_KP_PERIOD = 99,
+
+        KEY_NONUSBACKSLASH = 100,
+        KEY_APPLICATION = 101,
+        KEY_POWER = 102,
+
+        KEY_KP_EQUALS = 103,
+        KEY_F13 = 104,
+        KEY_F14 = 105,
+        KEY_F15 = 106,
+        KEY_F16 = 107,
+        KEY_F17 = 108,
+        KEY_F18 = 109,
+        KEY_F19 = 110,
+        KEY_F20 = 111,
+        KEY_F21 = 112,
+        KEY_F22 = 113,
+        KEY_F23 = 114,
+        KEY_F24 = 115,
+        KEY_EXECUTE = 116,
+        KEY_HELP = 117,
+        KEY_MENU = 118,
+        KEY_SELECT = 119,
+        KEY_STOP = 120,
+        KEY_AGAIN = 121,
+        KEY_UNDO = 122,
+        KEY_CUT = 123,
+        KEY_COPY = 124,
+        KEY_PASTE = 125,
+        KEY_FIND = 126,
+        KEY_MUTE = 127,
+        KEY_VOLUMEUP = 128,
+        KEY_VOLUMEDOWN = 129,
+
+        KEY_KP_COMMA = 133,
+        KEY_KP_EQUALSAS400 = 134,
+
+        KEY_INTERNATIONAL1 = 135,
+
+        KEY_INTERNATIONAL2 = 136,
+        KEY_INTERNATIONAL3 = 137,
+        KEY_INTERNATIONAL4 = 138,
+        KEY_INTERNATIONAL5 = 139,
+        KEY_INTERNATIONAL6 = 140,
+        KEY_INTERNATIONAL7 = 141,
+        KEY_INTERNATIONAL8 = 142,
+        KEY_INTERNATIONAL9 = 143,
+        KEY_LANG1 = 144,
+        KEY_LANG2 = 145,
+        KEY_LANG3 = 146,
+        KEY_LANG4 = 147,
+        KEY_LANG5 = 148,
+        KEY_LANG6 = 149,
+        KEY_LANG7 = 150,
+        KEY_LANG8 = 151,
+        KEY_LANG9 = 152,
+
+        KEY_ALTERASE = 153,
+        KEY_SYSREQ = 154,
+        KEY_CANCEL = 155,
+        KEY_CLEAR = 156,
+        KEY_PRIOR = 157,
+        KEY_RETURN2 = 158,
+        KEY_SEPARATOR = 159,
+        KEY_OUT = 160,
+        KEY_OPER = 161,
+        KEY_CLEARAGAIN = 162,
+        KEY_CRSEL = 163,
+        KEY_EXSEL = 164,
+
+        KEY_KP_00 = 176,
+        KEY_KP_000 = 177,
+        KEY_THOUSANDSSEPARATOR = 178,
+        KEY_DECIMALSEPARATOR = 179,
+        KEY_CURRENCYUNIT = 180,
+        KEY_CURRENCYSUBUNIT = 181,
+        KEY_KP_LEFTPAREN = 182,
+        KEY_KP_RIGHTPAREN = 183,
+        KEY_KP_LEFTBRACE = 184,
+        KEY_KP_RIGHTBRACE = 185,
+        KEY_KP_TAB = 186,
+        KEY_KP_BACKSPACE = 187,
+        KEY_KP_A = 188,
+        KEY_KP_B = 189,
+        KEY_KP_C = 190,
+        KEY_KP_D = 191,
+        KEY_KP_E = 192,
+        KEY_KP_F = 193,
+        KEY_KP_XOR = 194,
+        KEY_KP_POWER = 195,
+        KEY_KP_PERCENT = 196,
+        KEY_KP_LESS = 197,
+        KEY_KP_GREATER = 198,
+        KEY_KP_AMPERSAND = 199,
+        KEY_KP_DBLAMPERSAND = 200,
+        KEY_KP_VERTICALBAR = 201,
+        KEY_KP_DBLVERTICALBAR = 202,
+        KEY_KP_COLON = 203,
+        KEY_KP_HASH = 204,
+        KEY_KP_SPACE = 205,
+        KEY_KP_AT = 206,
+        KEY_KP_EXCLAM = 207,
+        KEY_KP_MEMSTORE = 208,
+        KEY_KP_MEMRECALL = 209,
+        KEY_KP_MEMCLEAR = 210,
+        KEY_KP_MEMADD = 211,
+        KEY_KP_MEMSUBTRACT = 212,
+        KEY_KP_MEMMULTIPLY = 213,
+        KEY_KP_MEMDIVIDE = 214,
+        KEY_KP_PLUSMINUS = 215,
+        KEY_KP_CLEAR = 216,
+        KEY_KP_CLEARENTRY = 217,
+        KEY_KP_BINARY = 218,
+        KEY_KP_OCTAL = 219,
+        KEY_KP_DECIMAL = 220,
+        KEY_KP_HEXADECIMAL = 221,
+
+        KEY_LCTRL = 224,
+        KEY_LSHIFT = 225,
+        KEY_LALT = 226,
+        KEY_LGUI = 227,
+        KEY_RCTRL = 228,
+        KEY_RSHIFT = 229,
+        KEY_RALT = 230,
+        KEY_RGUI = 231,
+
+        KEY_MODE = 257,
+
+        KEY_AUDIONEXT = 258,
+        KEY_AUDIOPREV = 259,
+        KEY_AUDIOSTOP = 260,
+        KEY_AUDIOPLAY = 261,
+        KEY_AUDIOMUTE = 262,
+        KEY_MEDIASELECT = 263,
+        KEY_WWW = 264,
+        KEY_MAIL = 265,
+        KEY_CALCULATOR = 266,
+        KEY_COMPUTER = 267,
+        KEY_AC_SEARCH = 268,
+        KEY_AC_HOME = 269,
+        KEY_AC_BACK = 270,
+        KEY_AC_FORWARD = 271,
+        KEY_AC_STOP = 272,
+        KEY_AC_REFRESH = 273,
+        KEY_AC_BOOKMARKS = 274,
+
+        KEY_BRIGHTNESSDOWN = 275,
+        KEY_BRIGHTNESSUP = 276,
+        KEY_DISPLAYSWITCH = 277,
+
+        KEY_KBDILLUMTOGGLE = 278,
+        KEY_KBDILLUMDOWN = 279,
+        KEY_KBDILLUMUP = 280,
+        KEY_EJECT = 281,
+        KEY_SLEEP = 282,
+
+        KEY_APP1 = 283,
+        KEY_APP2 = 284,
+
+        KEY_AUDIOREWIND = 285,
+        KEY_AUDIOFASTFORWARD = 286,
+
+        KEY_SOFTLEFT = 287,
+
+        KEY_SOFTRIGHT = 288,
+
+        KEY_CALL = 289,
+        KEY_ENDCALL = 290,
+        NUM_SCANCODES = 512
+    };

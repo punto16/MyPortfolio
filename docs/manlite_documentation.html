@@ -1,0 +1,308 @@
+<!DOCTYPE HTML>
+<!--
+	Forty by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+	<title>ManLite - Documentation</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<link rel="shortcut icon" type="image/png" href="images/ManLite/ManLite_Icon.png">
+</head>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Header -->
+		<header id="header" class="alt style">
+			<a href="manlite.html" class="logo"><strong>Man</strong> <span>Lite</span></a>
+			<nav>
+				<a href="#menu">Menu</a>
+			</nav>
+		</header>
+
+		<!-- Menu -->
+		<nav id="menu">
+			<ul class="links">
+				<li><a href="manlite.html">ManLite Home</a></li>
+				<li><a href="manlite_architecture.html">Architecture</a></li>
+				<li><a href="manlite_scripts.html">Usable Scripts</a></li>
+				<li><a href="index.html">Portfolio</a></li>
+			</ul>
+		</nav>
+
+		<section id="banner" class="style0">
+			<video autoplay muted loop id="video-background"
+				style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: 1;">
+				<source src="images/ManLite/DarkForest_ManLite.mp4" type="video/mp4">
+				Your browser does not support the video tag.
+			</video>
+			<div class="inner">
+				<span class="image">
+					<img src="images/pic07.jpg" alt="" />
+				</span>
+				<header class="major">
+					<h1>ManLite - Documentation</h1>
+				</header>
+			</div>
+		</section>
+
+		<!-- Main -->
+		<div id="main" class="alt">
+
+			<!-- One -->
+			<section id="one">
+				<div class="inner">
+					<p>
+						This documentation will be useful for the user in order to know how the engine works and how to
+						take profit of all the features it has.
+					</p>
+					<span class="image main"><img src="images/ManLite/ManLite.png" alt="" /></span>
+					<header class="major">
+						<h1>Things To Know</h1>
+					</header>
+					<p>
+						This engine has been being improved again and again, it has rendering draw calls optimizations
+						that increase the basic shapes rendering performance a 300% and the sprites rendering
+						performance a 25-30%
+						<br>
+						<br>
+						Remember you can edit Scripts without having to close the engine.
+						<br>
+						When you have the engine in background, maybe because you are editing a Script or maybe a Tiled
+						file, the engine will automatically set to idling (a functionality that caps the program
+						framerate to 11) and will stop heavy functions.
+						<br>
+						<br>
+						This engine will render the game objects based on their order in layer, NOT their order in the
+						hierarchy.
+						<br>
+						<br>
+						Prefabs will be set automatically to the upper layer when instantiated in scripts.
+					</p>
+					<header class="major">
+						<h3>Shortcuts</h3>
+					</header>
+					<p>
+						- Ctrl + Shift + N -> Create empty Game Object
+						<br>
+						- Ctrl + N -> Create New Empty Scene
+						<br>
+						- Ctrl + O -> Open Scene
+						<br>
+						- Ctrl + S -> Save Scene
+						<br>
+						- Ctrl + D -> Duplicate GameObject(s)
+						<br>
+						- Backspace / Delete -> Delete Selected GameObject(s)
+					</p>
+					<header class="major">
+						<h3>Hierarchy</h3>
+					</header>
+					<p>
+						The hierarchy is really easy to use, you can just right click anywhere and choose your desired
+						option. You can also drag and drop any game object or a set of game objects into others in order
+						to reparent them, re-order them, etc. You can right click the scene to rename it and even search
+						any game object by name.
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/hierarchy.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<header class="major">
+						<h3>Project</h3>
+					</header>
+					<p>
+						The Project manages and shows to the user the files that are inside the project, allowing the
+						user to reparent any file by drag and drop, to rename files, delete them, open them, or even
+						drag and drop them to any available part of the engine to use it.
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/project1.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/project2.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<header class="major">
+						<h3>Console</h3>
+					</header>
+					<p>
+						The Console is an indispensable tool in order too see what is happening in the program. The user
+						can also take profit of it by placing Logs inside scritps.
+					</p>
+					<img src="images/ManLite/console.png" width=90%>
+					<header class="major">
+						<h3>Animator</h3>
+					</header>
+					<p>
+						The animator is the tool that the user can use in order to create an animation out of a
+						spritesheet. User can duplicate frames, delete them, modify them, modify the speed, flip them,
+						etc.
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/animator.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<header class="major">
+						<h3>Scene</h3>
+					</header>
+					<p>
+						The scene is the main use view where the user can see what things are in the scene visually. It
+						uses a virtual camera instead of using any scene Game Object Camera.
+						<br>
+						User can move in the scene by:
+						<br>
+						- Right Click + WASD (hold shift for faster movement or ctrl for slower movement)
+						<br>
+						- Middle Mouse Button Click + Mouse Motion
+						<br>
+						- Middle Mouse Button Scroll to Zoom in or Zoom out
+						<br>
+						<br>
+						In the Scene, user can choose if hide lights, colliders (and gizmos) and grid, it has some
+						ImGuizmo options in order to transform the GameObjects and it allows to change the background
+						color.
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/scene.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<header class="major">
+						<h3>Game</h3>
+					</header>
+					<p>
+						The Game is the final view of the game, it is what is going to be seen in a build. Here the user
+						can also choose what's going to be the main camera.
+					</p>
+					<img src="images/ManLite/game.png" width=90%>
+					<header class="major">
+						<h3>TileMap</h3>
+					</header>
+					<p>
+						The TileMap panel allows the user to edit a TileMap using 3 types of drawing (they are shown in
+						thevideo below)
+						<br>
+						- Selection: select tiles from the final grid and paint them with a tile from the TileSet
+						<br>
+						- Brush: select tiles from the TileSet and paint them into the final grid
+						<br>
+						- Bucket: select a tile from the TileSet and paint continuously the same tiles in the final grid
+						<br>
+						<br>
+						It also allows you to modify the tile size in texture, the grid dimensions and the world tile
+						size and see some more information about the TileMap
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/tilemap_editor.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<br>
+					<br>
+					<p>
+						IMPORTANT: Tiled importation into the engine:
+						<br>
+						In order to import a Tiled file it must be a .json file directly exported from Tiled (tiled ->
+						export as -> .json)
+						<br>
+						And it must follow the following rules:
+						<br>
+						- Orientation must be Orhogonal
+						<br>
+						- Type must be Map
+						<br>
+						- The amount of tilesets used by the TileMap must be 1, and it must be an EMBED tileset (not an
+						external .tsx file)
+						<br>
+						- It can NOT be an infinite TileMap, it must have a grid width and height.
+						<br>
+						- Tiled file can contain Object Layers with rectangular objects, they will be imported as Static
+						colliders into the scene.
+						<br>
+						- Those Object Layers can have a Custom Attribute called "sensor" being a bool, in order to tell
+						the engine on import, if the objects of that layer will be a sensor or a physical object.
+						<br>
+						<br>
+						Here a small video on how to import a tiled file
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/tiled_import.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<br>
+					<br>
+					<header class="major">
+						<h3>Layer</h3>
+					</header>
+					<p>
+						The Layer is a panel where the user can manage, reorder, rename and toggle visibility of the
+						layers and their game objects.
+						<br>
+						Since the Render order is managed by these layers, the user must take them into account
+						precisely on
+						developing the scene.
+						<br>
+						This engine will render the game objects based on their order in layer, NOT their order in the
+						hierarchy.
+					</p>
+					<video autoplay muted loop id="video-background" style="width: 90%; height: 90%;">
+						<source src="images/ManLite/layers.mp4" type="video/mp4">
+						Your browser does not support the video tag.
+					</video>
+					<br>
+					<br>
+					<p>
+						Do you need more information? Remember there is a set of video tutorials showing how to use the
+						engine, too!
+					</p>
+					<p>
+						If you still have any question you are free to contact me!
+					</p>
+				</div>
+			</section>
+		</div>
+
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="icons">
+					<li><a href="https://x.com/r4_hater" class="icon brands alt fa-twitter"><span
+								class="label">Twitter</span></a></li>
+					<li><a href="https://instagram.com/lluifapis" class="icon brands alt fa-instagram"><span
+								class="label">Instagram</span></a></li>
+					<li><a href="https://github.com/punto16" class="icon brands alt fa-github"><span
+								class="label">GitHub</span></a></li>
+					<li><a href="https://linkedin.com/in/lluis-gonzalez-ramirez"
+							class="icon brands alt fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+				</ul>
+				<ul class="copyright">
+					<li>&copy; Luis Gonzalez Ramirez - All rights reserved</li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+
+</html>
